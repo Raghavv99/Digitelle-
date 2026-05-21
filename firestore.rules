@@ -1,0 +1,77 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function isValidId(id) {
+       return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+
+    function isAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email == 'raghvendrasingh9389@gmail.com' ||
+        request.auth.token.email == 'developerraghavv@gmail.com'
+      );
+    }
+
+    function isValidUser(data) {
+       return data.keys().hasAll(['email', 'createdAt']) && 
+              data.email is string && data.email.size() >= 3 && data.email.size() <= 100 &&
+              data.createdAt == request.time;
+    }
+
+    match /users/{userId} {
+      allow get: if isSignedIn() && request.auth.uid == userId;
+      allow list: if false; // No list
+      allow create: if isSignedIn() && isValidId(userId) && request.auth.uid == userId && isValidUser(incoming());
+      allow update: if isSignedIn() && request.auth.uid == userId;
+      allow delete: if isAdmin();
+    }
+
+    function isValidPlugin(data) {
+       return data.keys().hasAll(['title', 'desc', 'price', 'version', 'category', 'downloads', 'rating', 'publishedAt', 'isActive']) &&
+              data.keys().size() == 9 &&
+              data.title is string && data.title.size() > 0 && data.title.size() <= 100 &&
+              data.desc is string && data.desc.size() > 0 && data.desc.size() <= 5000 &&
+              data.price is string && data.price.size() > 0 && data.price.size() <= 20 &&
+              data.version is string && data.version.size() > 0 && data.version.size() <= 20 &&
+              data.category is string && data.category.size() > 0 && data.category.size() <= 50 &&
+              data.downloads is number &&
+              data.rating is number &&
+              data.publishedAt == request.time &&
+              data.isActive is bool;
+    }
+
+    match /plugins/{pluginId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if isAdmin() && isValidId(pluginId) && isValidPlugin(incoming());
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    match /api_keys/{keyId} {
+      // Users can see their own API keys, or admins can see all
+      allow read: if isSignedIn() && (request.auth.uid == existing().user_id || isAdmin());
+      // Users can generate API keys directly directly via dashboard on frontend, must check ownership
+      allow create: if isSignedIn() && incoming().user_id == request.auth.uid;
+      // Backend or self updates
+      allow update: if isAdmin() || (isSignedIn() && incoming().user_id == request.auth.uid && existing().user_id == request.auth.uid);
+      allow delete: if isAdmin() || (isSignedIn() && existing().user_id == request.auth.uid);
+    }
+    
+    match /validation_logs/{logId} {
+      allow read: if isAdmin();
+      allow create: if true; // Backend/Express server creates this without admin sdk currently, so needs true write or we add an admin token, but we are using client sdk in backend, so allow create
+    }
+  }
+}

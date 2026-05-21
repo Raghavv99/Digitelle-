@@ -1,0 +1,41 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile data",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["email", "createdAt"]
+    },
+    "Plugin": {
+      "title": "Plugin",
+      "description": "Marketplace plugin data",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "desc": { "type": "string" },
+        "price": { "type": "string" },
+        "version": { "type": "string" },
+        "category": { "type": "string" },
+        "downloads": { "type": "number" },
+        "rating": { "type": "number" },
+        "publishedAt": { "type": "string" },
+        "isActive": { "type": "boolean" }
+      },
+      "required": ["title", "desc", "price", "version", "category", "downloads", "rating", "publishedAt", "isActive"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": { "$ref": "User" },
+      "description": "User profiles"
+    },
+    "plugins/{pluginId}": {
+      "schema": { "$ref": "Plugin" },
+      "description": "Available plugins"
+    }
+  }
+}

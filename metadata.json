@@ -1,0 +1,6 @@
+{
+  "name": "Digitelle",
+  "description": "The official premium ecosystem platform for Digitelle WordPress plugins, featuring marketplace, subscriptions, API management, and developer dashboards.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
