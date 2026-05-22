@@ -35,12 +35,12 @@ export function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-          <button className="w-full sm:w-auto relative px-8 py-4 bg-white text-black font-semibold rounded-full hover:scale-105 transition-transform active:scale-95 flex items-center justify-center gap-2">
+          <button className="w-full sm:w-auto relative px-6 py-3 h-12 bg-white text-black font-semibold rounded-full hover:scale-105 transition-transform active:scale-95 flex items-center justify-center gap-2 text-sm whitespace-nowrap">
             Start Building Free
             <ChevronRight className="w-4 h-4" />
           </button>
           
-          <button className="w-full sm:w-auto px-8 py-4 rounded-full glass font-medium text-white hover:bg-white/5 transition-colors border border-white/10 flex items-center justify-center gap-2">
+          <button className="w-full sm:w-auto h-12 px-6 py-3 rounded-full glass font-medium text-white hover:bg-white/5 transition-colors border border-white/10 flex items-center justify-center gap-2 text-sm whitespace-nowrap">
             <Terminal className="w-4 h-4" />
             View Documentation
           </button>

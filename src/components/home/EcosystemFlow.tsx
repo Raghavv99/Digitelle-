@@ -4,7 +4,7 @@ import { Download, Key, Server, Users, ArrowRight } from "lucide-react";
 export function EcosystemFlow() {
   return (
     <section className="py-32 relative overflow-hidden bg-[#0A0A0B]">
-      <div className="max-w-7xl mx-auto px-4 z-10 relative">
+      <div className="max-w-[1400px] mx-auto px-4 z-10 relative">
         <div className="text-center mb-24 max-w-3xl mx-auto">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}

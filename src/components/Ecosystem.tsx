@@ -6,7 +6,7 @@ export function Ecosystem() {
     <section className="py-32 overflow-hidden relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-digitelle-purple/5 to-transparent pointer-events-none"></div>
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

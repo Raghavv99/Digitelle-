@@ -64,7 +64,7 @@ export function PolicyPage() {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_0%,#000_20%,transparent_100%)]"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col lg:flex-row gap-12 lg:gap-24 lg:items-start">
+      <div className="max-w-[1400px] mx-auto px-6 relative z-10 flex flex-col lg:flex-row gap-12 lg:gap-24 lg:items-start">
         
         {/* Sticky Sidebar Navigation */}
         <aside className="w-full lg:w-64 shrink-0 lg:sticky lg:top-32 order-2 pt-12 lg:pt-0">

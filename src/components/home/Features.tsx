@@ -47,7 +47,7 @@ const features = [
 export function Features() {
   return (
     <section className="py-32 px-4 sm:px-6 lg:px-8 relative z-10 bg-[#050505]">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[1400px] mx-auto">
         <div className="flex flex-col md:flex-row gap-12 mb-20 items-end justify-between border-b border-white/5 pb-12">
           <motion.div
             initial={{ opacity: 0, x: -20 }}

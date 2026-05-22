@@ -11,6 +11,7 @@ import { GenericPage } from "./views/GenericPage";
 import { PluginView } from "./views/PluginView";
 import { AuthModal } from "./components/AuthModal";
 import { AdminPanel } from "./views/AdminPanel";
+import { PluginActivation } from "./views/PluginActivation";
 
 export type Page = "home" | "dashboard" | "marketplace" | "docs" | "pricing" | "contact" | "about" | "changelog";
 
@@ -77,6 +78,7 @@ function MainApp() {
           <Route path="/changelog" element={<Changelog />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/policies/:slug" element={<PolicyPage />} />
+          <Route path="/activate" element={<PluginActivation />} />
         </Routes>
       </main>
       

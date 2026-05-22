@@ -32,7 +32,7 @@ if (activation.isValid) {
 
   return (
     <section className="py-32 px-4 relative overflow-hidden bg-[#0A0A0B]">
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 relative z-10">
+      <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row items-center gap-16 relative z-10">
         
         <motion.div 
           className="w-full lg:w-1/2"

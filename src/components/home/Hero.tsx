@@ -40,31 +40,32 @@ export function Hero({ openAuth, navigate }: HeroProps) {
           </span>
         </button>
 
-        <h1 className="text-6xl sm:text-7xl md:text-[5.5rem] font-display font-bold tracking-tighter mb-8 leading-[1.1]">
+        <h1 className="text-[clamp(3rem,6vw,5.5rem)] font-display font-bold tracking-tighter mb-8 leading-[1.05]">
           <span className="text-white drop-shadow-md">The unified backend for</span>
-          <br />
-          <span className="text-gradient-primary glow-text italic pr-2">elite WordPress</span>
-          <span className="text-white drop-shadow-md"> plugins.</span>
+          <br className="hidden sm:block" />
+          <span className="text-white drop-shadow-md sm:hidden"> </span>
+          <span className="text-gradient-primary glow-text italic pr-4 pl-1 inline-block pb-2 -mb-2">elite</span>
+          <span className="text-white drop-shadow-md">WordPress plugins.</span>
         </h1>
 
-        <p className="text-xl text-white/60 max-w-3xl mb-12 font-light leading-relaxed">
+        <p className="text-[clamp(1rem,1.5vw,1.25rem)] text-white/60 max-w-3xl mb-12 font-light leading-relaxed">
           Instantly deploy licensing, subscription management, telemetry, and secure edge validation via a single, hyper-optimized REST API. Join the platform scaling the next generation of creators.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
           <button 
             onClick={() => openAuth("signup")}
-            className="w-full sm:w-auto relative px-8 py-4 h-14 bg-white text-black font-semibold rounded-full hover:scale-[1.02] active:scale-[0.98] transition-transform flex items-center justify-center gap-2 text-lg shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)]"
+            className="w-full sm:w-auto relative px-6 py-3 h-12 bg-white text-black font-semibold rounded-full hover:scale-[1.02] active:scale-[0.98] transition-transform flex items-center justify-center gap-2 text-sm whitespace-nowrap shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] group"
           >
             Start Building Free
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
           
           <button 
              onClick={() => navigate("/docs")}
-             className="w-full sm:w-auto h-14 px-8 py-4 rounded-full glass font-medium text-white hover:bg-white/10 transition-colors border border-white/10 flex items-center justify-center gap-2 text-lg"
+             className="w-full sm:w-auto h-12 px-6 py-3 rounded-full glass font-medium text-white hover:bg-white/10 transition-colors border border-white/10 flex items-center justify-center gap-2 text-sm whitespace-nowrap"
           >
-            <Terminal className="w-5 h-5 text-digitelle-cyan" />
+            <Terminal className="w-4 h-4 text-digitelle-cyan" />
             Explore Documentation
           </button>
         </div>

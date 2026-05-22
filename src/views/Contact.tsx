@@ -91,7 +91,7 @@ export function Contact() {
        <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-digitelle-cyan/10 blur-[120px] rounded-full pointer-events-none"></div>
        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10 pointer-events-none mix-blend-screen"></div>
 
-       <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center">
+       <div className="max-w-[1400px] mx-auto px-6 relative z-10 flex flex-col items-center">
           
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center max-w-3xl mb-16">
              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-digitelle-cyan/10 border border-digitelle-cyan/20 text-digitelle-cyan text-sm font-bold tracking-widest uppercase mb-6">

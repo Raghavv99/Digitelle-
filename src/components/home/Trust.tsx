@@ -66,7 +66,7 @@ export function Trust() {
   return (
     <section className="py-24 border-y border-white/5 bg-[#050505] relative overflow-hidden">
       <div className="absolute inset-0 bg-grid-pattern opacity-50 mix-blend-screen mask-image:linear-gradient(to_bottom,transparent,black,transparent)"></div>
-      <div className="max-w-7xl mx-auto px-4 relative z-10 flex flex-col items-center">
+      <div className="max-w-[1400px] mx-auto px-4 relative z-10 flex flex-col items-center">
         <p className="text-sm font-medium tracking-widest text-white/40 uppercase mb-12">
           Powering the infrastructure for industry-leading developers
         </p>

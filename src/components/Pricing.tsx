@@ -32,7 +32,7 @@ const tiers = [
 export function Pricing() {
   return (
     <section className="py-32 px-4 sm:px-6 lg:px-8 relative">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[1400px] mx-auto">
         <div className="text-center mb-20">
            <h2 className="text-3xl md:text-5xl font-display font-bold mb-6">Simple pricing, infinite scale.</h2>
            <p className="text-lg text-white/50 max-w-2xl mx-auto">

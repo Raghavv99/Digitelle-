@@ -20,7 +20,7 @@ export function Marketplace({ navigate: legacyNavigate }: { navigate: (p: Page) 
       {/* Header section */}
       <div className="py-20 border-b border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-digitelle-purple/10 to-transparent"></div>
-        <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center text-center">
+        <div className="max-w-[1400px] mx-auto px-6 relative z-10 flex flex-col items-center text-center">
           <h1 className="text-5xl font-display font-bold mb-6">Discover Premium Plugins</h1>
           <p className="text-lg text-white/50 max-w-2xl mb-10">
             The official marketplace for Digitelle. Every plugin is vetted, edge-accelerated, and protected by our enterprise licensing infrastructure.

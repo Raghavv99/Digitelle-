@@ -9,7 +9,7 @@ const testimonials = [
 export function Testimonials() {
   return (
     <section className="py-32 px-4 bg-[#0A0A0B] relative overflow-hidden border-y border-white/5">
-       <div className="max-w-7xl mx-auto">
+       <div className="max-w-[1400px] mx-auto">
           <h2 className="text-center text-3xl md:text-5xl font-display font-bold mb-16">Trusted by the best.</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

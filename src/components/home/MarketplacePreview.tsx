@@ -14,7 +14,7 @@ export function MarketplacePreview({ navigate: legacyNavigate }: { navigate: (p:
 
   return (
     <section className="py-32 px-4 relative bg-[#050505]">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[1400px] mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
            <div>
              <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">Official Plugin Marketplace.</h2>

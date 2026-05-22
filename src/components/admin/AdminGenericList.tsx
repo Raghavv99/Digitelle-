@@ -7,7 +7,7 @@ export function AdminGenericList() {
   const formatTitle = (str: string) => str.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-7xl mx-auto space-y-8">
+    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-[1400px] mx-auto space-y-8">
       
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
          <div>

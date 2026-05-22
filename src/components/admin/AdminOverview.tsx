@@ -22,7 +22,7 @@ export function AdminOverview() {
   }, []);
 
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-7xl mx-auto space-y-10">
+    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-[1400px] mx-auto space-y-10">
        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <StatCard title="Total MRR" value="$142,390" icon={<Zap />} trend="+14.5%" positive color="from-emerald-500/20 to-transparent" borderColor="border-emerald-500/20" />
           <StatCard title="Registered Users" value={stats.users > 0 ? stats.users : "8,204"} icon={<Users />} trend="+5.2%" positive color="from-blue-500/20 to-transparent" borderColor="border-blue-500/20" />

@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, useInView, animate } from "motion/react";
 import { Layers, ShieldCheck, Zap, Server, Globe2, Code2, Users, Rocket, Target, Activity, CheckCircle2, ChevronRight, Lock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { JourneyTimeline } from "../components/home/JourneyTimeline";
 
 function AnimatedText({ val, className }: { val: string; className: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -72,7 +73,7 @@ export function About() {
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 mix-blend-screen"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10 space-y-32">
+      <div className="max-w-[1400px] mx-auto px-6 relative z-10 space-y-32">
         
         {/* 1. Hero Section */}
         <motion.section 
@@ -229,34 +230,12 @@ export function About() {
             </p>
           </motion.div>
         </section>
+      </div>
 
-        {/* 13. Timeline / Journey */}
-        <section className="relative">
-           <h2 className="text-4xl font-display font-bold mb-16 text-center">The Journey.</h2>
-           <div className="absolute left-1/2 top-32 bottom-0 w-px bg-white/10 -translate-x-1/2 hidden md:block"></div>
-           
-           <div className="space-y-16">
-              {[
-                { year: "2023", title: "The Inception", desc: "Digitelle was born out of frustration with legacy plugin licensing systems." },
-                { year: "2024", title: "Marketplace Launch", desc: "Released the first version of the platform with seamless WooCommerce integration." },
-                { year: "2025", title: "Cloud Infrastructure", desc: "Migrated to a globally distributed edge network using React and Firebase." },
-                { year: "Future", title: "Global Developer Hub", desc: "Expanding the API ecosystem to empower thousands of creators worldwide." }
-              ].map((item, i) => (
-                <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className={`flex flex-col md:flex-row gap-8 items-center ${i % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
-                  <div className={`flex-1 text-center md:text-${i % 2 !== 0 ? 'left' : 'right'}`}>
-                    <div className="text-5xl font-black text-white/10 mb-2">{item.year}</div>
-                    <h3 className="text-2xl font-bold mb-2 text-white">{item.title}</h3>
-                    <p className="text-white/50">{item.desc}</p>
-                  </div>
-                  <div className="w-8 h-8 rounded-full bg-black border-4 border-[#030303] shadow-[0_0_0_2px_rgba(255,255,255,0.2)] flex items-center justify-center relative z-10">
-                     <div className="w-2 h-2 rounded-full bg-digitelle-cyan animate-pulse"></div>
-                  </div>
-                  <div className="flex-1 hidden md:block"></div>
-                </motion.div>
-              ))}
-           </div>
-        </section>
+      {/* 13. Ecosystem Timeline / Journey */}
+      <JourneyTimeline />
 
+      <div className="max-w-[1400px] mx-auto px-6 relative z-10 mt-32">
         {/* 16. Final CTA Section */}
         <motion.section initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="relative z-10 pb-20">
           <div className="rounded-[40px] bg-gradient-to-br from-digitelle-cyan/20 via-digitelle-purple/10 to-transparent p-[1px]">
