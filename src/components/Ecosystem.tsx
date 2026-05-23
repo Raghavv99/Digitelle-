@@ -53,7 +53,7 @@ export function Ecosystem() {
                   <motion.div 
                     key={i}
                     className="absolute w-full h-full flex items-center justify-between z-10"
-                    style={{ rotate: rotation }}
+                    style={{ transform: `rotate(${rotation}deg)` }}
                   >
                     {/* Connecting Lines */}
                     <div className="absolute left-1/2 right-0 h-px bg-gradient-to-r from-digitelle-purple to-transparent opacity-30 transform origin-left">
@@ -65,7 +65,7 @@ export function Ecosystem() {
                        />
                     </div>
                     
-                    <div className="absolute right-0 p-4 glass rounded-xl border border-white/10" style={{ rotate: -rotation }}>
+                    <div className="absolute right-0 p-4 glass rounded-xl border border-white/10" style={{ transform: `rotate(${-rotation}deg)` }}>
                       <Activity className="w-6 h-6 text-digitelle-cyan" />
                     </div>
                   </motion.div>

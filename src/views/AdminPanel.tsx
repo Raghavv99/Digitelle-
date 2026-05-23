@@ -13,6 +13,7 @@ import { AdminUpload } from "../components/admin/AdminUpload";
 import { AdminGenericList } from "../components/admin/AdminGenericList";
 import { AdminPlugins } from "../components/admin/AdminPlugins";
 import { AdminApiManager } from "../components/admin/AdminApiManager";
+import { AdminVersions } from "../components/admin/AdminVersions";
 
 export function AdminPanel() {
   const { user, loading } = useAuth();
@@ -22,7 +23,6 @@ export function AdminPanel() {
 
   useEffect(() => {
     if (!loading && (!user || (user.email !== "raghvendrasingh9389@gmail.com" && user.email !== "developerraghavv@gmail.com"))) {
-      // In production, uncomment this. For preview, we allow access to see the admin panel.
       // navigate("/");
     }
   }, [user, loading, navigate]);
@@ -182,6 +182,7 @@ export function AdminPanel() {
                <Route path="/" element={<AdminOverview />} />
                <Route path="/upload" element={<AdminUpload />} />
                <Route path="/plugins" element={<AdminPlugins />} />
+               <Route path="/versions" element={<AdminVersions />} />
                <Route path="/api" element={<AdminApiManager />} />
                {/* Generic view for other tabs to ensure no dead buttons */}
                <Route path="/:tab" element={<AdminGenericList />} />

@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../lib/firebase";
-import { Box, Trash2, Edit, ExternalLink, Star, Download } from "lucide-react";
+import { Box, Trash2, Edit, ExternalLink, Star, Download, Image as ImageIcon } from "lucide-react";
 
 export function AdminPlugins() {
   const [plugins, setPlugins] = useState<any[]>([]);
@@ -52,11 +52,11 @@ export function AdminPlugins() {
                 <table className="w-full text-left">
                    <thead className="bg-black/50 border-b border-white/5 backdrop-blur-xl">
                       <tr>
-                         <th className="p-6 text-xs font-bold text-white/30 uppercase tracking-widest uppercase">Plugin Name</th>
-                         <th className="p-6 text-xs font-bold text-white/30 uppercase tracking-widest uppercase">Category</th>
-                         <th className="p-6 text-xs font-bold text-white/30 uppercase tracking-widest uppercase">Price</th>
-                         <th className="p-6 text-xs font-bold text-white/30 uppercase tracking-widest uppercase">Metrics</th>
-                         <th className="p-6 text-xs font-bold text-white/30 uppercase tracking-widest uppercase text-right">Actions</th>
+                         <th className="p-6 text-xs font-bold text-white/30 uppercase tracking-widest">Plugin Identity</th>
+                         <th className="p-6 text-xs font-bold text-white/30 uppercase tracking-widest">Status / Tier</th>
+                         <th className="p-6 text-xs font-bold text-white/30 uppercase tracking-widest">Pricing</th>
+                         <th className="p-6 text-xs font-bold text-white/30 uppercase tracking-widest">Metrics</th>
+                         <th className="p-6 text-xs font-bold text-white/30 uppercase tracking-widest text-right">Actions</th>
                       </tr>
                    </thead>
                    <tbody className="divide-y divide-white/5">
@@ -64,38 +64,47 @@ export function AdminPlugins() {
                          <tr key={plugin.id} className="hover:bg-white/[0.02] transition-colors group">
                             <td className="p-6 focus:outline-none">
                                <div className="flex items-center gap-4">
-                                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#111] to-black border border-white/10 flex items-center justify-center shadow-lg group-hover:border-digitelle-cyan/50 transition-colors">
-                                     <Box className="w-5 h-5 text-digitelle-cyan" />
+                                  <div className="relative w-14 h-14 rounded-xl bg-gradient-to-br from-[#111] to-black border border-white/10 flex items-center justify-center shadow-lg overflow-hidden group-hover:border-digitelle-cyan/50 transition-colors">
+                                     {plugin.bannerUrl ? (
+                                        <img src={plugin.bannerUrl} alt={plugin.name} className="w-full h-full object-cover opacity-80" />
+                                     ) : (
+                                        <Box className="w-6 h-6 text-digitelle-cyan" />
+                                     )}
                                   </div>
                                   <div>
-                                     <div className="font-bold text-white text-lg">{plugin.title}</div>
-                                     <div className="text-xs font-mono text-white/40">v{plugin.version} • {plugin.id.substring(0,8)}</div>
+                                     <div className="font-bold text-white text-lg">{plugin.name || plugin.title}</div>
+                                     <div className="text-xs font-mono text-white/40">v{plugin.currentVersion || plugin.version} • {plugin.slug || plugin.id.substring(0,8)}</div>
                                   </div>
                                </div>
                             </td>
                             <td className="p-6">
-                               <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-xs font-medium text-white/70">
-                                 {plugin.category || "General"}
-                               </span>
+                               <div className="flex flex-col gap-2 items-start">
+                                 <span className={`px-2 py-1 border rounded text-[10px] font-bold uppercase tracking-widest ${plugin.status === 'Published' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-white/5 border-white/10 text-white/50'}`}>
+                                   {plugin.status || 'Active'}
+                                 </span>
+                                 <span className="px-2 py-1 bg-digitelle-purple/10 border border-digitelle-purple/20 rounded text-[10px] font-bold uppercase tracking-widest text-digitelle-purple">
+                                   {plugin.tier || 'FREE'}
+                                 </span>
+                               </div>
                             </td>
                             <td className="p-6">
-                               <div className="font-mono text-sm font-bold">{plugin.price}</div>
+                               <div className="font-mono text-sm font-bold">{plugin.pricing || plugin.price || 'Free'}</div>
                             </td>
                             <td className="p-6">
-                               <div className="flex gap-4">
-                                  <span className="flex items-center gap-1.5 text-xs text-white/50"><Download className="w-3.5 h-3.5 text-digitelle-cyan" /> {plugin.downloads || 0}</span>
-                                  <span className="flex items-center gap-1.5 text-xs text-white/50"><Star className="w-3.5 h-3.5 text-yellow-500" /> {plugin.rating || 5.0}</span>
+                               <div className="flex flex-col gap-1.5">
+                                  <span className="flex items-center gap-2 text-xs text-white/70 font-mono"><Download className="w-3.5 h-3.5 text-digitelle-cyan" /> {plugin.downloads || 0}</span>
+                                  <span className="flex items-center gap-2 text-xs text-white/70 font-mono"><Star className="w-3.5 h-3.5 text-yellow-500" /> {typeof plugin.rating === 'number' ? plugin.rating.toFixed(1) : (plugin.rating || '5.0')}</span>
                                </div>
                             </td>
                             <td className="p-6 text-right">
                                <div className="flex justify-end gap-3 opacity-50 group-hover:opacity-100 transition-opacity">
-                                  <button className="p-2 bg-white/5 hover:bg-white/10 rounded-lg text-white/60 hover:text-white transition-colors">
-                                     <Edit className="w-4 h-4" />
-                                  </button>
-                                  <button className="p-2 bg-white/5 hover:bg-white/10 rounded-lg text-white/60 hover:text-white transition-colors">
+                                  <button onClick={() => window.open(`/plugin/${plugin.slug || plugin.id}`, '_blank')} className="p-2 bg-white/5 hover:bg-white/10 rounded-lg text-white/60 hover:text-white transition-colors" title="View in Marketplace">
                                      <ExternalLink className="w-4 h-4" />
                                   </button>
-                                  <button onClick={() => handleDelete(plugin.id)} className="p-2 bg-rose-500/10 hover:bg-rose-500/20 rounded-lg text-rose-400 hover:text-rose-300 transition-colors">
+                                  <button className="p-2 bg-white/5 hover:bg-white/10 rounded-lg text-white/60 hover:text-white transition-colors" title="Edit Plugin Data">
+                                     <Edit className="w-4 h-4" />
+                                  </button>
+                                  <button onClick={() => handleDelete(plugin.id)} className="p-2 bg-rose-500/10 hover:bg-rose-500/20 rounded-lg text-rose-400 hover:text-rose-300 transition-colors" title="Revoke & Delete">
                                      <Trash2 className="w-4 h-4" />
                                   </button>
                                </div>

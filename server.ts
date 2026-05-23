@@ -4,12 +4,43 @@ import { createServer as createViteServer } from "vite";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, query, where, getDocs, updateDoc, doc, addDoc, serverTimestamp } from "firebase/firestore";
 import fs from "fs";
+import multer from "multer";
+import compression from "compression";
 
 async function startServer() {
   const app = express();
   const PORT = 3000;
 
+  app.use(compression());
   app.use(express.json());
+
+  // Ensure storage folder exists
+  const uploadsDir = path.join(process.cwd(), "public", "uploads");
+  if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+  }
+
+  // Serve uploaded assets statically
+  app.use("/uploads", express.static(uploadsDir));
+
+  // Configure Multer storage
+  const uploadStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, uploadsDir);
+    },
+    filename: (req, file, cb) => {
+      const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+      const cleanName = file.originalname.replace(/[^a-zA-Z0-9.\-_]/g, "_");
+      cb(null, `${uniqueSuffix}-${cleanName}`);
+    }
+  });
+
+  const upload = multer({
+    storage: uploadStorage,
+    limits: {
+      fileSize: 100 * 1024 * 1024 // 100MB max limit for plugin zip and assets
+    }
+  });
 
   // Load config synchronously
   let firebaseConfig = {};
@@ -124,6 +155,38 @@ async function startServer() {
       console.error(e);
       res.status(500).json({ error: "Internal server error." });
     }
+  });
+
+  // POST /api/upload
+  // Accepts a 'file' parameter and uploads it to public/uploads, returning a download URL
+  app.post("/api/upload", (req, res) => {
+    upload.single("file")(req, res, (err) => {
+      if (err) {
+        console.error("Multer upload error:", err);
+        return res.status(400).json({
+          success: false,
+          error: err.message || "File upload failed due to size limit or parsing constraint."
+        });
+      }
+
+      try {
+        if (!req.file) {
+          return res.status(400).json({ success: false, error: "No file was uploaded." });
+        }
+
+        const fileUrl = `/uploads/${req.file.filename}`;
+        res.json({
+           success: true,
+           url: fileUrl,
+           filename: req.file.filename,
+           mimetype: req.file.mimetype,
+           size: req.file.size
+        });
+      } catch (err: any) {
+        console.error("Upload handler error:", err);
+        res.status(500).json({ success: false, error: err.message || "File upload failed on server." });
+      }
+    });
   });
 
 
