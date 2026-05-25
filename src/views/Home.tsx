@@ -4,7 +4,6 @@ import { Hero } from "../components/home/Hero";
 import { Trust } from "../components/home/Trust";
 import { EcosystemFlow } from "../components/home/EcosystemFlow";
 import { Features } from "../components/home/Features";
-import { JourneyTimeline } from "../components/home/JourneyTimeline";
 import { LiveDashboardPreview } from "../components/home/LiveDashboardPreview";
 import { Pricing } from "./Pricing";
 import { ApiSection } from "../components/home/ApiSection";
@@ -34,7 +33,6 @@ export function Home({ navigate, openAuth }: HomeProps) {
       <Trust />
       <EcosystemFlow />
       <Features />
-      <JourneyTimeline />
       <Pricing />
       <LiveDashboardPreview navigate={navigate} openAuth={openAuth} />
       <ApiSection />
