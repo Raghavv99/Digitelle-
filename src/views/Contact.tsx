@@ -58,7 +58,7 @@ export function Contact() {
       const messageBody = `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.mobile}\nPriority: ${formData.priority}\nCategory: ${formData.category}\n\nIssue:\n${formData.message}`;
 
       if (method === 'email') {
-        window.location.href = `mailto:developerraghavv@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(messageBody)}`;
+        window.location.href = `mailto:support@digitelle.us.cc?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(messageBody)}`;
       } else {
         window.open(`https://wa.me/+919389858364?text=${encodeURIComponent(`*Subject:* ${formData.subject}\n\n${messageBody}`)}`, "_blank");
       }
@@ -118,7 +118,7 @@ export function Contact() {
                    <Mail className="w-8 h-8 text-digitelle-purple mb-4" />
                    <h3 className="text-xl font-bold mb-2">Email Support</h3>
                    <p className="text-sm text-white/50 mb-4">Detailed technical inquiries and billing questions.</p>
-                   <a href="mailto:developerraghavv@gmail.com" className="text-digitelle-purple font-bold hover:text-purple-300 transition-colors flex items-center gap-2 text-sm uppercase tracking-wider">Email Us &rarr;</a>
+                   <a href="mailto:support@digitelle.us.cc" className="text-digitelle-purple font-bold hover:text-purple-300 transition-colors flex items-center gap-2 text-sm uppercase tracking-wider">Email Us &rarr;</a>
                 </div>
 
                 <div className="glass p-8 rounded-3xl border border-white/10">
